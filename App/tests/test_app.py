@@ -119,16 +119,6 @@ class UsersIntegrationTests(unittest.TestCase):
         student = get_student(812394821)
         assert student.studentId == 812394821
 
-    
-
-
-    # def test_get_students_with_reviews_Json(self):
-    #     students = get_all_students()
-    #     self.assertListEqual([{"id": 1, "karma": 0.0, "name": "Richard", "reviews": [{"downvote": 0, "id": 1, "message": "Hello! this peepee sucks poopoo", "studentId": 812394821, "upvote": 0}]}], students)
-
-
-        
-
 
     # Tests data changes in the database
     def test_update_user(self):
@@ -136,11 +126,14 @@ class UsersIntegrationTests(unittest.TestCase):
         user = get_user(1)
         assert user.username == "ronnie"
     
+    #Ensures karma is calculated correctly
     def test_karma_calculation(self):
         karma_calc(812394821)
         student = get_student(812394821)
         assert student.karma == 100
-    
+        
+        
+    #Ensures that the updated upvote and downvote  is retrieved with the correct values 
     def test_update_review(self):
         update_review(1, 1.0, 0)
         student = get_student(812394821)
